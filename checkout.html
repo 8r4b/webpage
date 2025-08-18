@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - MyAPI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Complete Your Purchase</h1>
+    <p>Start using MyAPI today</p>
+  </header>
+
+  <main>
+    <div class="checkout-container">
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div id="selected-plan">
+          <p>Selected Plan: <span id="plan-name">Professional</span></p>
+          <p>Price: <span id="plan-price">$49/month</span></p>
+        </div>
+        <div class="plan-features">
+          <h4>What's included:</h4>
+          <ul id="plan-features-list">
+            <li>100,000 API calls/month</li>
+            <li>Advanced authentication & OAuth</li>
+            <li>Priority support</li>
+            <li>99.95% uptime SLA</li>
+            <li>Real-time analytics</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checkout-form">
+        <h3>Payment Information</h3>
+        <p>Secure payment powered by Paddle</p>
+        
+        <!-- This is where Paddle checkout will be embedded -->
+        <div id="paddle-checkout">
+          <div class="checkout-placeholder">
+            <p>🔒 Secure Checkout</p>
+            <p>Payment processing will be handled by Paddle's secure checkout system.</p>
+            <button type="button" class="paddle-checkout-btn" onclick="openPaddleCheckout()">
+              Proceed to Secure Payment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-indicators">
+      <h4>Why choose MyAPI?</h4>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <strong>🔒 Secure</strong>
+          <p>Bank-level security and encryption</p>
+        </div>
+        <div class="trust-item">
+          <strong>⚡ Reliable</strong>
+          <p>99.9%+ uptime guaranteed</p>
+        </div>
+        <div class="trust-item">
+          <strong>📞 Support</strong>
+          <p>Expert support when you need it</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="index.html">Home</a> |
+    <a href="pricing.html">Pricing</a> |
+    <a href="terms.html">Terms of Service</a> |
+    <a href="privacy.html">Privacy Policy</a>
+  </footer>
+
+  <script>
+    // This function will be replaced with actual Paddle integration
+    function openPaddleCheckout() {
+      alert('Paddle checkout integration will be implemented here once your domain is verified.');
+    }
+
+    // Get plan from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const plan = urlParams.get('plan') || 'professional';
+    
+    // Update plan display based on selection
+    const planDetails = {
+      starter: { name: 'Starter', price: '$19/month', features: ['10,000 API calls/month', 'Basic authentication', 'Email support', '99.9% uptime SLA'] },
+      professional: { name: 'Professional', price: '$49/month', features: ['100,000 API calls/month', 'Advanced authentication & OAuth', 'Priority support', '99.95% uptime SLA', 'Real-time analytics'] },
+      enterprise: { name: 'Enterprise', price: '$199/month', features: ['1,000,000 API calls/month', 'Enterprise authentication', '24/7 phone support', '99.99% uptime SLA', 'Advanced analytics & reporting', 'Custom integrations'] }
+    };
+
+    if (planDetails[plan]) {
+      document.getElementById('plan-name').textContent = planDetails[plan].name;
+      document.getElementById('plan-price').textContent = planDetails[plan].price;
+      
+      const featuresList = document.getElementById('plan-features-list');
+      featuresList.innerHTML = '';
+      planDetails[plan].features.forEach(feature => {
+        const li = document.createElement('li');
+        li.textContent = feature;
+        featuresList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
+
+<!-- this should be added -->
